@@ -9,10 +9,12 @@ namespace TournamentClinching
 	public class Group
 	{
 		public string GroupName { get; private set; }
-		public List<Game> FinishedGames { get; private set; }
-		public List<Game> RemainingGames { get; private set; }
-		public List<TeamStanding> CurrentStandings { get; private set; }
-		public List<Scenario> Scenarios { get; private set; }
+		public List<TeamGroupResult> TeamGroupResults { get; private set; }
+
+		private List<Scenario> Scenarios;
+		private List<TeamStanding> CurrentStandings;
+		private List<Game> FinishedGames;
+		private List<Game> RemainingGames;
 
 		public Group(IEnumerable<Game> games)
 		{
@@ -49,8 +51,9 @@ namespace TournamentClinching
 			}
 		}
 
-		#region POSSIBLE SCENARIOS
-		public void PopulateScenarios()
+		public override string ToString() => this.GroupName;
+
+		public void SimulateScenarios()
 		{
 			var possibleScenarios = this.GetPossibleScenarios(this.RemainingGames.Count);
 			this.Scenarios = new List<Scenario>();
@@ -80,6 +83,20 @@ namespace TournamentClinching
 				var scenario = new Scenario(possibleScenario, this.CurrentStandings, scenarioGames);
 				this.Scenarios.Add(scenario);
 			}
+
+			var scenarioResultsByTeam = this.Scenarios
+											.SelectMany(x => x.TeamOutcomes)
+											.GroupBy(y => y.TeamName)
+											.ToList();
+			this.TeamGroupResults = scenarioResultsByTeam
+											.Select(x =>
+												new TeamGroupResult(
+													teamName: x.Key,
+													maxPoints: x.Max(y => y.Points),
+													minPoints: x.Min(y => y.Points),
+													bestPlace: x.Min(y => y.BestResult),
+													worstPlace: x.Max(y => y.WorstResult)))
+											.ToList();
 		}
 
 		private static Dictionary<int, List<string>> PossibleScenariosByGamesRemaining = new Dictionary<int, List<string>>();
@@ -107,6 +124,5 @@ namespace TournamentClinching
 			}
 			return results;
 		}
-		#endregion POSSIBLE SCENARIOS
 	}
 }

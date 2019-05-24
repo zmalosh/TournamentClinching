@@ -50,6 +50,7 @@
     <Compile Include="GroupStage.cs" />
     <Compile Include="Scenario.cs" />
     <Compile Include="ScenarioTeamOutcome.cs" />
+    <Compile Include="TeamGroupResult.cs" />
     <Compile Include="TeamStanding.cs" />
   </ItemGroup>
   <ItemGroup>

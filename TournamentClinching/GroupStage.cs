@@ -19,7 +19,7 @@ namespace TournamentClinching
 		{
 			foreach (var group in this.Groups)
 			{
-				group.PopulateScenarios();
+				group.SimulateScenarios();
 			}
 		}
 	}

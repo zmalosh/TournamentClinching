@@ -14,16 +14,16 @@
 	<game group="G" home="PAN" away="TUN" />
 
 
-	<!--<game group="F" home="GER" away="MEX" homeScore="0" awayScore="1" />-->
-	<!--<game group="F" home="SWE" away="KOR" homeScore="1" awayScore="0" />-->
-	<!--<game group="F" home="KOR" away="MEX" homeScore="1" awayScore="2" />-->
-	<!--<game group="F" home="GER" away="SWE" homeScore="2" awayScore="1" />-->
+	<game group="F" home="GER" away="MEX" homeScore="0" awayScore="1" />
+	<game group="F" home="SWE" away="KOR" homeScore="1" awayScore="0" />
+	<game group="F" home="KOR" away="MEX" homeScore="1" awayScore="2" />
+	<game group="F" home="GER" away="SWE" homeScore="2" awayScore="1" />
 	<!--<game group="F" home="KOR" away="GER" homeScore="2" awayScore="0" />-->
 	<!--<game group="F" home="MEX" away="SWE" homeScore="0" awayScore="3" />-->
-	<game group="F" home="GER" away="MEX" />
-	<game group="F" home="SWE" away="KOR" />
-	<game group="F" home="KOR" away="MEX" />
-	<game group="F" home="GER" away="SWE" />
+	<!--<game group="F" home="GER" away="MEX" />-->
+	<!--<game group="F" home="SWE" away="KOR" />-->
+	<!--<game group="F" home="KOR" away="MEX" />-->
+	<!--<game group="F" home="GER" away="SWE" />-->
 	<game group="F" home="KOR" away="GER" />
 	<game group="F" home="MEX" away="SWE" />
 </games>
