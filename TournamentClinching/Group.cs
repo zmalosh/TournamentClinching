@@ -49,17 +49,17 @@ namespace TournamentClinching
 			}
 		}
 
-		#region POSSIBLE OUTCOMES
+		#region POSSIBLE SCENARIOS
 		public void PopulateScenarios()
 		{
-			var possibleOutcomes = this.GetPossibleOutcomes(this.RemainingGames.Count);
+			var possibleScenarios = this.GetPossibleScenarios(this.RemainingGames.Count);
 			this.Scenarios = new List<Scenario>();
-			foreach (var possibleOutcome in possibleOutcomes)
+			foreach (var possibleScenario in possibleScenarios)
 			{
 				var scenarioGames = new List<Game>();
 				for (int i = 0; i < this.RemainingGames.Count; i++)
 				{
-					var homeResult = possibleOutcome[i];
+					var homeResult = possibleScenario[i];
 					Game scenarioGame;
 					var baseGame = this.RemainingGames[i];
 					if (homeResult == 'W')
@@ -77,29 +77,29 @@ namespace TournamentClinching
 					else { throw new ArgumentException($"Result not expected:{homeResult}"); }
 					scenarioGames.Add(scenarioGame);
 				}
-				var scenario = new Scenario(possibleOutcome, this.CurrentStandings, scenarioGames);
+				var scenario = new Scenario(possibleScenario, this.CurrentStandings, scenarioGames);
 				this.Scenarios.Add(scenario);
 			}
 		}
 
-		private static Dictionary<int, List<string>> PossibleOutcomesByGamesRemaining = new Dictionary<int, List<string>>();
-		public List<string> GetPossibleOutcomes(int gameCount)
+		private static Dictionary<int, List<string>> PossibleScenariosByGamesRemaining = new Dictionary<int, List<string>>();
+		public List<string> GetPossibleScenarios(int gameCount)
 		{
-			if (!PossibleOutcomesByGamesRemaining.TryGetValue(gameCount, out List<string> result))
+			if (!PossibleScenariosByGamesRemaining.TryGetValue(gameCount, out List<string> result))
 			{
-				result = CalculatePossibleOutcomesRecursive(gameCount);
-				PossibleOutcomesByGamesRemaining[gameCount] = result;
+				result = CalculatePossibleScenariosRecursive(gameCount);
+				PossibleScenariosByGamesRemaining[gameCount] = result;
 			}
 			return result;
 		}
 
-		private List<string> CalculatePossibleOutcomesRecursive(int gameCount)
+		private List<string> CalculatePossibleScenariosRecursive(int gameCount)
 		{
 			if (gameCount == 1)
 			{
 				return new List<string> { "W", "D", "L" };
 			}
-			var subresults = CalculatePossibleOutcomesRecursive(gameCount - 1);
+			var subresults = CalculatePossibleScenariosRecursive(gameCount - 1);
 			var results = new List<string>();
 			foreach (var subresult in subresults)
 			{
@@ -107,6 +107,6 @@ namespace TournamentClinching
 			}
 			return results;
 		}
-		#endregion POSSIBLE OUTCOMES
+		#endregion POSSIBLE SCENARIOS
 	}
 }

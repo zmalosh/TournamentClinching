@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <games>
-	<!--<game group="G" home="BEL" away="PAN" homeScore="3" awayScore="0" />-->
-	<!--<game group="G" home="TUN" away="ENG" homeScore="1" awayScore="2" />-->
-	<!--<game group="G" home="BEL" away="TUN" homeScore="5" awayScore="2" />-->
-	<!--<game group="G" home="ENG" away="PAN" homeScore="6" awayScore="1" />-->
+	<game group="G" home="BEL" away="PAN" homeScore="3" awayScore="0" />
+	<game group="G" home="TUN" away="ENG" homeScore="1" awayScore="2" />
+	<game group="G" home="BEL" away="TUN" homeScore="5" awayScore="2" />
+	<game group="G" home="ENG" away="PAN" homeScore="6" awayScore="1" />
 	<!--<game group="G" home="ENG" away="BEL" homeScore="0" awayScore="1" />-->
 	<!--<game group="G" home="PAN" away="TUN" homeScore="1" awayScore="2" />-->
-	<game group="G" home="BEL" away="PAN" />
-	<game group="G" home="TUN" away="ENG" />
-	<game group="G" home="BEL" away="TUN" />
-	<game group="G" home="ENG" away="PAN" />
+	<!--<game group="G" home="BEL" away="PAN" />-->
+	<!--<game group="G" home="TUN" away="ENG" />-->
+	<!--<game group="G" home="BEL" away="TUN" />-->
+	<!--<game group="G" home="ENG" away="PAN" />-->
 	<game group="G" home="ENG" away="BEL" />
 	<game group="G" home="PAN" away="TUN" />
 
