@@ -83,6 +83,24 @@ namespace TournamentClinching
 			throw new ArgumentException("teamName is not a part of this game");
 		}
 
+		public static int? GetTeamGoalsScored(this Game game, string teamName)
+		{
+			if (!game.HasTeam(teamName))
+			{
+				throw new Exception($"Team \"{teamName}\" not in this game");
+			}
+			return game.HomeTeam == teamName ? game.HomeScore : game.AwayScore;
+		}
+
+		public static int? GetOpponentGoalsScored(this Game game, string teamName)
+		{
+			if (!game.HasTeam(teamName))
+			{
+				throw new Exception($"Team \"{teamName}\" not in this game");
+			}
+			return game.HomeTeam == teamName ? game.AwayScore : game.HomeScore;
+		}
+
 		private static int GetTeamPointsGained(int teamScore, int oppScore)
 		{
 			if (teamScore > oppScore)
