@@ -12,7 +12,7 @@ namespace TournamentClinching
 		public int MaxPoints { get; private set; }
 		public int MinPoints { get; private set; }
 
-		public bool IsLocked { get; private set; }
+		public bool IsTeamLocked { get; private set; }
 		public string LockedTeamName { get; private set; }
 		public int? GoalsScored { get; private set; }
 		public int? GoalsAllowed { get; private set; }
@@ -23,7 +23,7 @@ namespace TournamentClinching
 			this.Place = place;
 			this.MaxPoints = maxPoints;
 			this.MinPoints = minPoints;
-			this.IsLocked = false;
+			this.IsTeamLocked = false;
 			this.LockedTeamName = null;
 			this.GoalsScored = null;
 			this.GoalsAllowed = null;
@@ -31,7 +31,7 @@ namespace TournamentClinching
 
 		public void LockTeam(string teamName)
 		{
-			this.IsLocked = true;
+			this.IsTeamLocked = true;
 			this.LockedTeamName = teamName;
 		}
 
