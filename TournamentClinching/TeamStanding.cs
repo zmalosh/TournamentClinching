@@ -59,6 +59,7 @@ namespace TournamentClinching
 		private const int TEAMS_TIED = 0;
 		public int CompareTo(TeamStanding other)
 		{
+			bool includeTiebreakers = this.FutureGamesAdded == 0 && other.FutureGamesAdded == 0;
 			if (this.Points > other.Points)
 			{
 				return TEAM_IS_BETTER;
@@ -67,7 +68,7 @@ namespace TournamentClinching
 			{
 				return OTHER_IS_BETTER;
 			}
-			else if (this.FutureGamesAdded != 0 || other.FutureGamesAdded != 0)
+			else if (!includeTiebreakers)
 			{
 				return TEAMS_TIED;
 			}
