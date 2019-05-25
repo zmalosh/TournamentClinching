@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TournamentClinching
 {
-	public class TeamStanding
+	public class TeamStanding : IComparable<TeamStanding>
 	{
 		public string TeamName { get; private set; }
 		public int Points { get; private set; }
@@ -52,6 +52,45 @@ namespace TournamentClinching
 		public override string ToString()
 		{
 			return $"{this.TeamName}-{this.Points}";
+		}
+
+		private const int TEAM_IS_BETTER = -1;
+		private const int OTHER_IS_BETTER = 1;
+		private const int TEAMS_TIED = 0;
+		public int CompareTo(TeamStanding other)
+		{
+			if (this.Points > other.Points)
+			{
+				return TEAM_IS_BETTER;
+			}
+			else if (this.Points < other.Points)
+			{
+				return OTHER_IS_BETTER;
+			}
+			else if (this.FutureGamesAdded != 0 || other.FutureGamesAdded != 0)
+			{
+				return TEAMS_TIED;
+			}
+
+			if (this.GoalDifference > other.GoalDifference)
+			{
+				return TEAM_IS_BETTER;
+			}
+			else if (this.GoalDifference < other.GoalDifference)
+			{
+				return OTHER_IS_BETTER;
+			}
+
+			if (this.GoalsScored > other.GoalsScored)
+			{
+				return TEAM_IS_BETTER;
+			}
+			else if (this.GoalsScored < other.GoalsScored)
+			{
+				return OTHER_IS_BETTER;
+			}
+
+			return TEAMS_TIED;
 		}
 
 		public static TeamStanding CopyTeamStanding(TeamStanding other)
