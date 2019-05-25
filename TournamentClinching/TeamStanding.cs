@@ -19,11 +19,7 @@ namespace TournamentClinching
 
 		public TeamStanding(string teamName, IEnumerable<Game> groupGames)
 		{
-			this.Points = 0;
-			this.GoalsScored = 0;
-			this.GoalsAllowed = 0;
-			this.FutureGamesAdded = 0;
-			this.TeamName = teamName;
+			this.InitializeObject(teamName);
 			var finalTeamGames = groupGames.Where(x => x.HasTeam(this.TeamName) && x.IsFinal).ToList();
 			if (finalTeamGames != null && finalTeamGames.Count > 0)
 			{
@@ -39,12 +35,18 @@ namespace TournamentClinching
 
 		private TeamStanding(string teamName, int points)
 		{
-			this.TeamName = teamName;
+			this.InitializeObject(teamName);
 			this.Points = points;
+		}
+
+		private void InitializeObject(string teamName)
+		{
+			this.TeamName = teamName;
 			this.Points = 0;
 			this.GoalsScored = 0;
 			this.GoalsAllowed = 0;
 			this.FutureGamesAdded = 0;
+			this.GamesPlayed = 0;
 		}
 
 		public override string ToString()
