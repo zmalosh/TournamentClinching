@@ -10,18 +10,23 @@ namespace TournamentClinching
 	{
 		public string TeamName { get; private set; }
 		public int Points { get; private set; }
+
 		// NO TIE BREAKERS APPLIED FOR GOALS. TEAMS BEST OUTCOME IS BEST POSSIBLE w/ TIE BREAKERS
 		public int BestResult { get; private set; }
-
-		// NO TIE BREAKERS APPLIED FOR GOALS. TEAMS WORST OUTCOME IS WORST POSSIBLE w/ TIE BREAKERS
 		public int WorstResult { get; private set; }
 
-		public ScenarioTeamOutcome(string teamName, int points, int bestResult, int worstResult)
+		public int GoalsScored { get; private set; }
+		public int GoalsAllowed { get; private set; }
+		public int GoalDifference => this.GoalsScored - this.GoalsAllowed;
+
+		public ScenarioTeamOutcome(string teamName, int points, int bestResult, int worstResult, int goalsScored, int goalsAllowed)
 		{
 			this.TeamName = teamName;
 			this.Points = points;
 			this.BestResult = bestResult;
 			this.WorstResult = worstResult;
+			this.GoalsScored = goalsScored;
+			this.GoalsAllowed = goalsAllowed;
 		}
 
 		public override string ToString()

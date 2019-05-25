@@ -32,7 +32,7 @@ namespace TournamentClinching
 									new
 									{
 										Points = x.Key,
-										TeamNames = x.Select(y => y.TeamName),
+										Teams = x.Select(y => new { TeamName = y.TeamName, GoalsScored = y.GoalsScored, GoalsAllowed = y.GoalsAllowed }),
 										Count = x.Count()
 									})
 								.OrderByDescending(x => x.Points)
@@ -43,9 +43,9 @@ namespace TournamentClinching
 			{
 				int bestResult = betterTeams + 1;
 				int worstResult = betterTeams + outcomeTier.Count;
-				foreach (var teamName in outcomeTier.TeamNames)
+				foreach (var team in outcomeTier.Teams)
 				{
-					this.TeamOutcomes.Add(new ScenarioTeamOutcome(teamName, outcomeTier.Points, bestResult, worstResult));
+					this.TeamOutcomes.Add(new ScenarioTeamOutcome(team.TeamName, outcomeTier.Points, bestResult, worstResult, team.GoalsScored, team.GoalsAllowed));
 				}
 				betterTeams += outcomeTier.Count;
 			}

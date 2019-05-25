@@ -49,6 +49,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GroupStage.cs" />
     <Compile Include="Scenario.cs" />
+    <Compile Include="PlaceGroupResult.cs" />
     <Compile Include="ScenarioTeamOutcome.cs" />
     <Compile Include="TeamGroupResult.cs" />
     <Compile Include="TeamStanding.cs" />
