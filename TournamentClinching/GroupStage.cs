@@ -30,7 +30,13 @@ namespace TournamentClinching
 			this.WCGroupsAlive = null;
 		}
 
-		public void CalculateStandings()
+		public void SimulateGroupStage()
+		{
+			this.ProcessScenarios();
+			this.CalculateAdvancement();
+		}
+
+		private void ProcessScenarios()
 		{
 			foreach (var group in this.Groups)
 			{
@@ -38,7 +44,7 @@ namespace TournamentClinching
 			}
 		}
 
-		public void CalculateAdvancement()
+		private void CalculateAdvancement()
 		{
 			// wc = wild card
 			// eliminated = no longer in competition
