@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<games advancers="20">
+	<game group="A" home="RUS" away="KSA" homeScore="5" awayScore="0" />
+	<game group="A" home="EGY" away="URU" homeScore="0" awayScore="1" />
+	<game group="B" home="MAR" away="IRN" homeScore="0" awayScore="1" />
+	<game group="B" home="POR" away="ESP" homeScore="3" awayScore="3" />
+	<game group="C" home="FRA" away="AUS" homeScore="2" awayScore="1" />
+	<game group="D" home="ARG" away="ISL" homeScore="1" awayScore="1" />
+	<game group="C" home="PER" away="DEN" homeScore="0" awayScore="1" />
+	<game group="D" home="CRO" away="NGA" homeScore="2" awayScore="0" />
+	<game group="E" home="CRC" away="SRB" homeScore="0" awayScore="1" />
+	<game group="F" home="GER" away="MEX" homeScore="0" awayScore="1" />
+	<game group="E" home="BRA" away="SUI" homeScore="1" awayScore="1" />
+	<game group="F" home="SWE" away="KOR" homeScore="1" awayScore="0" />
+	<game group="G" home="BEL" away="PAN" homeScore="3" awayScore="0" />
+	<game group="G" home="TUN" away="ENG" homeScore="1" awayScore="2" />
+	<game group="H" home="COL" away="JPN" homeScore="1" awayScore="2" />
+	<game group="H" home="POL" away="SEN" homeScore="1" awayScore="2" />
+	<game group="A" home="RUS" away="EGY" homeScore="3" awayScore="1" />
+	<game group="B" home="POR" away="MAR" homeScore="1" awayScore="0" />
+	<game group="A" home="URU" away="KSA" homeScore="1" awayScore="0" />
+	<game group="B" home="IRN" away="ESP" homeScore="0" awayScore="1" />
+	<game group="C" home="DEN" away="AUS" homeScore="1" awayScore="1" />
+	<game group="C" home="FRA" away="PER" homeScore="1" awayScore="0" />
+	<game group="D" home="ARG" away="CRO" homeScore="0" awayScore="3" />
+	<game group="E" home="BRA" away="CRC" homeScore="2" awayScore="0" />
+	<game group="D" home="NGA" away="ISL" homeScore="2" awayScore="0" />
+	<game group="E" home="SRB" away="SUI" homeScore="1" awayScore="2" />
+	<game group="G" home="BEL" away="TUN" homeScore="5" awayScore="2" />
+	<game group="F" home="KOR" away="MEX" homeScore="1" awayScore="2" />
+	<game group="F" home="GER" away="SWE" homeScore="2" awayScore="1" />
+	<game group="G" home="ENG" away="PAN" homeScore="6" awayScore="1" />
+	<game group="H" home="JPN" away="SEN" homeScore="2" awayScore="2" />
+	<game group="H" home="POL" away="COL" homeScore="0" awayScore="3" />
+	<!--<game group="A" home="KSA" away="EGY" homeScore="2" awayScore="1" />-->
+	<!--<game group="A" home="URU" away="RUS" homeScore="3" awayScore="0" />-->
+	<!--<game group="B" home="IRN" away="POR" homeScore="1" awayScore="1" />-->
+	<!--<game group="B" home="ESP" away="MAR" homeScore="2" awayScore="2" />-->
+	<!--<game group="C" home="AUS" away="PER" homeScore="0" awayScore="2" />-->
+	<!--<game group="C" home="DEN" away="FRA" homeScore="0" awayScore="0" />-->
+	<!--<game group="D" home="NGA" away="ARG" homeScore="1" awayScore="2" />-->
+	<!--<game group="D" home="ISL" away="CRO" homeScore="1" awayScore="2" />-->
+	<!--<game group="F" home="MEX" away="SWE" homeScore="0" awayScore="3" />-->
+	<!--<game group="F" home="KOR" away="GER" homeScore="2" awayScore="0" />-->
+	<!--<game group="E" home="SUI" away="CRC" homeScore="2" awayScore="2" />-->
+	<!--<game group="E" home="SRB" away="BRA" homeScore="0" awayScore="2" />-->
+	<!--<game group="H" home="SEN" away="COL" homeScore="0" awayScore="1" />-->
+	<!--<game group="H" home="JPN" away="POL" homeScore="0" awayScore="1" />-->
+	<!--<game group="G" home="ENG" away="BEL" homeScore="0" awayScore="1" />-->
+	<!--<game group="G" home="PAN" away="TUN" homeScore="1" awayScore="2" />-->
+	<game group="A" home="KSA" away="EGY" />
+	<game group="A" home="URU" away="RUS" />
+	<game group="B" home="IRN" away="POR" />
+	<game group="B" home="ESP" away="MAR" />
+	<game group="C" home="AUS" away="PER" />
+	<game group="C" home="DEN" away="FRA" />
+	<game group="D" home="NGA" away="ARG" />
+	<game group="D" home="ISL" away="CRO" />
+	<game group="F" home="MEX" away="SWE" />
+	<game group="F" home="KOR" away="GER" />
+	<game group="E" home="SUI" away="CRC" />
+	<game group="E" home="SRB" away="BRA" />
+	<game group="H" home="SEN" away="COL" />
+	<game group="H" home="JPN" away="POL" />
+	<game group="G" home="ENG" away="BEL" />
+	<game group="G" home="PAN" away="TUN" />
+</games>
