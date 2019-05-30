@@ -32,11 +32,11 @@ namespace TournamentClinching
 
 		public void SimulateGroupStage()
 		{
-			this.ProcessScenarios();
+			this.CalculateBasicTeamStandings();
 			this.CalculateAdvancement();
 		}
 
-		private void ProcessScenarios()
+		private void CalculateBasicTeamStandings()
 		{
 			foreach (var group in this.Groups)
 			{
@@ -132,5 +132,6 @@ namespace TournamentClinching
 			this.WCGroupsClinched = groupsClinched.Select(x => x.GroupName).ToList();
 			this.WCGroupsEliminated = groupsClinched.Select(x => x.GroupName).ToList();
 		}
+
 	}
 }

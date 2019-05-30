@@ -13,7 +13,7 @@ namespace TournamentClinching
 		public List<PlaceGroupResult> PlaceGroupResults { get; private set; }
 
 		private List<Scenario> Scenarios;
-		private List<TeamStanding> CurrentStandings;
+		private List<BasicTeamStanding> CurrentStandings;
 		private List<Game> FinishedGames;
 		private List<Game> RemainingGames;
 
@@ -44,10 +44,10 @@ namespace TournamentClinching
 				}
 			}
 
-			this.CurrentStandings = new List<TeamStanding>();
+			this.CurrentStandings = new List<BasicTeamStanding>();
 			foreach (var teamName in teamNames)
 			{
-				var currentTeamStanding = new TeamStanding(teamName, this.FinishedGames);
+				var currentTeamStanding = new BasicTeamStanding(teamName, this.FinishedGames);
 				this.CurrentStandings.Add(currentTeamStanding);
 			}
 		}

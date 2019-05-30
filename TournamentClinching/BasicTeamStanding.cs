@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TournamentClinching
 {
-	public class TeamStanding : IComparable<TeamStanding>
+	public class BasicTeamStanding : IComparable<BasicTeamStanding>
 	{
 		public string TeamName { get; private set; }
 		public int Points { get; private set; }
@@ -17,7 +17,7 @@ namespace TournamentClinching
 
 		public int GoalDifference => this.GoalsScored - this.GoalsAllowed;
 
-		public TeamStanding(string teamName, IEnumerable<Game> groupGames)
+		public BasicTeamStanding(string teamName, IEnumerable<Game> groupGames)
 		{
 			this.InitializeObject(teamName);
 			var finalTeamGames = groupGames.Where(x => x.HasTeam(this.TeamName) && x.IsFinal).ToList();
@@ -33,7 +33,7 @@ namespace TournamentClinching
 			}
 		}
 
-		private TeamStanding(string teamName, int points)
+		private BasicTeamStanding(string teamName, int points)
 		{
 			this.InitializeObject(teamName);
 			this.Points = points;
@@ -57,7 +57,7 @@ namespace TournamentClinching
 		private const int TEAM_IS_BETTER = -1;
 		private const int OTHER_IS_BETTER = 1;
 		private const int TEAMS_TIED = 0;
-		public int CompareTo(TeamStanding other)
+		public int CompareTo(BasicTeamStanding other)
 		{
 			bool includeTiebreakers = this.FutureGamesAdded == 0 && other.FutureGamesAdded == 0;
 			if (this.Points > other.Points)
@@ -94,9 +94,9 @@ namespace TournamentClinching
 			return TEAMS_TIED;
 		}
 
-		public static TeamStanding CopyTeamStanding(TeamStanding other)
+		public static BasicTeamStanding CopyTeamStanding(BasicTeamStanding other)
 		{
-			return new TeamStanding(other.TeamName, other.Points);
+			return new BasicTeamStanding(other.TeamName, other.Points);
 		}
 
 		public void AddResult(Game game)
