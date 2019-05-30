@@ -12,10 +12,12 @@ namespace TournamentClinching
 	{
 		static void Main(string[] args)
 		{
-			var gamesXml = XDocument.Load("TestFiles/4Teams01.xml");
+			var gamesXml = XDocument.Load("TestFiles/2015WWC.xml");
 			var games = gamesXml.Descendants("game").Select(x => new Game(x)).ToList();
-			var groupStage = new GroupStage(games);
-			groupStage.PopulateScenarios();
+			int advancerCount = int.Parse(gamesXml.Root.Attribute("advancers").Value);
+			var groupStage = new GroupStage(games, advancerCount);
+			groupStage.CalculateStandings();
+			groupStage.CalculateAdvancement();
 			var a = 1;
 		}
 	}

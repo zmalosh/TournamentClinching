@@ -71,7 +71,7 @@ namespace TournamentClinching
 					var standing = this.CurrentStandings[i];
 					var teamGroupResult = new TeamGroupResult(standing.TeamName, standing.Points, standing.Points, i + 1, i + 1);
 					this.TeamGroupResults.Add(teamGroupResult);
-					var placeGroupResult = new PlaceGroupResult(i + 1, standing.Points, standing.Points);
+					var placeGroupResult = new PlaceGroupResult(this.GroupName, i + 1, standing.Points, standing.Points);
 					placeGroupResult.LockTeam(standing.TeamName);
 					placeGroupResult.LockTeamGoals(standing.GoalsScored, standing.GoalsAllowed);
 					this.PlaceGroupResults.Add(placeGroupResult);
@@ -140,7 +140,7 @@ namespace TournamentClinching
 					int maxPoints = scenarioResults.Max(x => x.TeamOutcome.Points);
 					int minPoints = scenarioResults.Min(x => x.TeamOutcome.Points);
 
-					var placeGroupResult = new PlaceGroupResult(place, maxPoints, minPoints);
+					var placeGroupResult = new PlaceGroupResult(this.GroupName, place, maxPoints, minPoints);
 
 					// DETERMINE IF PLACE IS LOCKED TO SINGLE TEAM
 					var firstScenarioResult = scenarioResults.First();
@@ -167,8 +167,6 @@ namespace TournamentClinching
 					this.PlaceGroupResults.Add(placeGroupResult);
 				}
 			}
-
-			var a = 0;
 		}
 
 		private static Dictionary<int, List<string>> PossibleScenariosByGamesRemaining = new Dictionary<int, List<string>>();
