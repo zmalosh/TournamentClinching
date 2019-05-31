@@ -11,10 +11,10 @@ namespace TournamentClinching
 		public string Key { get; set; }
 		public List<ScenarioTeamOutcome> TeamOutcomes { get; private set; }
 
-		public Scenario(string key, List<BasicTeamStanding> baseTeamStandings, List<Game> futureGames)
+		public Scenario(string key, List<BaseTeamStanding> baseTeamStandings, List<Game> futureGames)
 		{
 			this.Key = key;
-			var localTeamStandings = baseTeamStandings.Select(x => BasicTeamStanding.CopyTeamStanding(x)).ToList();
+			var localTeamStandings = baseTeamStandings.Select(x => BaseTeamStanding.CopyTeamStanding(x)).ToList();
 			foreach (var team in localTeamStandings)
 			{
 				foreach (var game in futureGames)

@@ -16,7 +16,8 @@ namespace TournamentClinching
 			var games = gamesXml.Descendants("game").Select(x => new Game(x)).ToList();
 			int advancerCount = int.Parse(gamesXml.Root.Attribute("advancers").Value);
 			var groupStage = new GroupStage(games, advancerCount);
-			groupStage.SimulateGroupStage();
+			var standings = groupStage.GetStandings();
+			var standingsByGroup = standings.ToLookup(x => x.GroupName);
 			var a = 1;
 		}
 	}

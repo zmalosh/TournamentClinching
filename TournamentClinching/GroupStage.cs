@@ -8,11 +8,13 @@ namespace TournamentClinching
 {
 	public class GroupStage
 	{
-		public List<Group> Groups { get; set; }
+		private List<Group> Groups;
+		private List<string> TeamNames;
+		private int TeamsAdvancingCount;
 
-		private int TeamsAdvancing;
-		private int TeamCountPerGroup;
-		private int WildCardTeamCount;
+		private int TeamsAdvancingPerGroup => this.TeamsAdvancingCount / this.Groups.Count;
+		private int TeamEliminatedPerGroup => (this.TeamNames.Count - this.TeamsAdvancingCount) / this.Groups.Count;
+		private int WildCardTeamCount => this.TeamsAdvancingCount - (this.TeamsAdvancingPerGroup * this.Groups.Count);
 
 		private List<string> WCGroupsClinched;
 		private List<string> WCGroupsEliminated;
@@ -21,22 +23,23 @@ namespace TournamentClinching
 		public GroupStage(IEnumerable<Game> games, int teamsAdvancing)
 		{
 			this.Groups = games.GroupBy(x => x.Group).Select(y => new Group(y.ToList())).ToList();
-			this.TeamsAdvancing = teamsAdvancing;
-			this.TeamCountPerGroup = teamsAdvancing / this.Groups.Count;
-			this.WildCardTeamCount = this.TeamsAdvancing - (this.TeamCountPerGroup * this.Groups.Count);
+			this.TeamNames = this.Groups.SelectMany(x => x.TeamNames).ToList();
+			this.TeamsAdvancingCount = teamsAdvancing;
 
 			this.WCGroupsClinched = null;
 			this.WCGroupsEliminated = null;
 			this.WCGroupsAlive = null;
 		}
 
-		public void SimulateGroupStage()
+		public List<FinalTeamStanding> GetStandings()
 		{
-			this.CalculateBasicTeamStandings();
+			this.CalculateBaseTeamStandings();
 			this.CalculateAdvancement();
+			var standings = this.CalculateFinalStandings();
+			return this.CalculateFinalStandings();
 		}
 
-		private void CalculateBasicTeamStandings()
+		private void CalculateBaseTeamStandings()
 		{
 			foreach (var group in this.Groups)
 			{
@@ -54,7 +57,7 @@ namespace TournamentClinching
 			// - locked team = the team for the group is locked, but the goals being locked is undefined
 			// - locked goals = the team and goals are both locked
 
-			int wcPlace = this.TeamCountPerGroup + 1;
+			int wcPlace = this.TeamsAdvancingPerGroup + 1;
 			int totalTeamsToEliminate = this.Groups.Count - this.WildCardTeamCount;
 			var wcGroupEntries = this.Groups.SelectMany(x => x.PlaceGroupResults).Where(x => x.Place == wcPlace).ToList();
 
@@ -133,5 +136,49 @@ namespace TournamentClinching
 			this.WCGroupsEliminated = groupsClinched.Select(x => x.GroupName).ToList();
 		}
 
+		private List<FinalTeamStanding> CalculateFinalStandings()
+		{
+			var result = new List<FinalTeamStanding>();
+			foreach (var group in this.Groups)
+			{
+				int worstClinched = this.TeamsAdvancingPerGroup;
+				int bestEliminated = (group.TeamNames.Count + 1) - this.TeamEliminatedPerGroup;
+
+				if (this.WCGroupsClinched.Contains(group.GroupName))
+				{
+					worstClinched++;
+				}
+				if (this.WCGroupsEliminated.Contains(group.GroupName))
+				{
+					bestEliminated--;
+				}
+
+				for (int i = 0; i < group.TeamGroupResults.Count; i++)
+				{
+					var team = group.TeamGroupResults[i];
+					string teamName = team.TeamName;
+					var baseStanding = group.GetBaseTeamStanding(teamName);
+					bool isEliminated = team.BestPlace >= bestEliminated;
+					bool isClinched = team.WorstPlace <= worstClinched;
+					var finalTeamStanding = new FinalTeamStanding(
+						teamName: teamName,
+						groupName: group.GroupName,
+						place: i + 1,
+						wins: baseStanding.Wins,
+						draws: baseStanding.Draws,
+						losses: baseStanding.Losses,
+						goalsScored: baseStanding.GoalsScored,
+						goalsAgainst: baseStanding.GoalsAllowed,
+						hasBeenEliminated: isEliminated,
+						hasClinchedAdvancement: isClinched,
+						bestGroupPlace: team.BestPlace,
+						worstGroupPlace: team.WorstPlace,
+						maxPoints: team.MaxPoints,
+						minPoints: team.MinPoints);
+					result.Add(finalTeamStanding);
+				}
+			}
+			return result;
+		}
 	}
 }

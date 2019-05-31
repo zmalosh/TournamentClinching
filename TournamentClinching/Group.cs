@@ -9,11 +9,12 @@ namespace TournamentClinching
 	public class Group
 	{
 		public string GroupName { get; private set; }
+		public List<string> TeamNames { get; private set; }
 		public List<TeamGroupResult> TeamGroupResults { get; private set; }
 		public List<PlaceGroupResult> PlaceGroupResults { get; private set; }
 
 		private List<Scenario> Scenarios;
-		private List<BasicTeamStanding> CurrentStandings;
+		private List<BaseTeamStanding> CurrentStandings;
 		private List<Game> FinishedGames;
 		private List<Game> RemainingGames;
 
@@ -21,18 +22,18 @@ namespace TournamentClinching
 		{
 			this.GroupName = games.Select(x => x.Group).Distinct().Single();
 
-			var teamNames = new List<string>();
+			this.TeamNames = new List<string>();
 			this.FinishedGames = new List<Game>();
 			this.RemainingGames = new List<Game>();
 			foreach (var game in games)
 			{
-				if (!teamNames.Contains(game.HomeTeam))
+				if (!this.TeamNames.Contains(game.HomeTeam))
 				{
-					teamNames.Add(game.HomeTeam);
+					this.TeamNames.Add(game.HomeTeam);
 				}
-				if (!teamNames.Contains(game.AwayTeam))
+				if (!this.TeamNames.Contains(game.AwayTeam))
 				{
-					teamNames.Add(game.AwayTeam);
+					this.TeamNames.Add(game.AwayTeam);
 				}
 				if (game.IsFinal)
 				{
@@ -44,10 +45,10 @@ namespace TournamentClinching
 				}
 			}
 
-			this.CurrentStandings = new List<BasicTeamStanding>();
-			foreach (var teamName in teamNames)
+			this.CurrentStandings = new List<BaseTeamStanding>();
+			foreach (var teamName in this.TeamNames)
 			{
-				var currentTeamStanding = new BasicTeamStanding(teamName, this.FinishedGames);
+				var currentTeamStanding = new BaseTeamStanding(teamName, this.FinishedGames);
 				this.CurrentStandings.Add(currentTeamStanding);
 			}
 		}
@@ -167,6 +168,12 @@ namespace TournamentClinching
 					this.PlaceGroupResults.Add(placeGroupResult);
 				}
 			}
+		}
+
+		public BaseTeamStanding GetBaseTeamStanding(string teamName)
+		{
+			var result = this.CurrentStandings.SingleOrDefault(x => x.TeamName == teamName);
+			return result;
 		}
 
 		private static Dictionary<int, List<string>> PossibleScenariosByGamesRemaining = new Dictionary<int, List<string>>();
